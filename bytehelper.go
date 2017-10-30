@@ -31,6 +31,11 @@ func (b *ByteHelper) ReadString(nSize int) string {
 	return string(b.ReadByte(nSize))
 }
 
+//截取nSize长度文本,前去除前后空格
+func (b *ByteHelper) ReadStringTrimSpace(nSize int) string {
+	return strings.TrimSpace(string(b.ReadByte(nSize)))
+}
+
 //截取Uint8
 func (b *ByteHelper) ReadUint8() uint8 {
 	s := uint8(b.data[0:1][0])
@@ -184,6 +189,11 @@ func ReadByte(data []byte, nSize int) ([]byte, []byte) {
 //截取nSize长度的切片并转化为文本
 func ReadString(data []byte, nSize int) (string, []byte) {
 	return string(data[:nSize]), data[nSize:]
+}
+
+//截取nSize长度的切片并转化为文本,并去掉前后空格
+func ReadStringTrimSpace(data []byte, nSize int) (string, []byte) {
+	return strings.TrimSpace(string(data[:nSize])), data[nSize:]
 }
 
 //截取Uint8
